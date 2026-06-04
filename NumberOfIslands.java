@@ -1,0 +1,35 @@
+public class NumberOfIslands {
+    public static void main(String[] args) {
+        char[][] grid = {
+                {'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'1', '1', '1', '1', '0'},
+                {'0', '0', '0', '0', '1'}
+        };
+        System.out.println(numIslands(grid)); // Output: 3
+    }
+
+    public static int numIslands(char[][] grid) {
+        int numIslands = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    numIslands++;
+                    dfs(grid, i, j);
+                }
+            }
+        }
+        return numIslands;
+    }
+
+    private static void dfs(char[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == '0') {
+            return;
+        }
+        grid[i][j] = '0'; // Mark as visited
+        dfs(grid, i + 1, j); // Down
+        dfs(grid, i - 1, j); // Up
+        dfs(grid, i, j + 1); // Right
+        dfs(grid, i, j - 1); // Left
+    }
+}
