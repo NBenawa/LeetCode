@@ -12,15 +12,15 @@ public class PallindromeLinkedList {
         System.out.println(isPalindrome(head));
     }
 
-    private static boolean isPalindrome(ListNode head) {
-        String str = "";
-        while (head != null) {
-            str += head.val;
-            head = head.next;
-        }
-        String reversedStr = new StringBuilder(str).reverse().toString();
-        return str.equals(reversedStr);
-    }
+    // private static boolean isPalindrome(ListNode head) {
+    //     String str = "";
+    //     while (head != null) {
+    //         str += head.val;
+    //         head = head.next;
+    //     }
+    //     String reversedStr = new StringBuilder(str).reverse().toString();
+    //     return str.equals(reversedStr);
+    // }
 
     private static boolean isPalindrome(ListNode head) {
         List<Integer> list = new ArrayList<>();
@@ -41,9 +41,6 @@ public class PallindromeLinkedList {
 
     }
 
-    private static boolean isPalindrome(ListNode head) {
-
-    }
     static class ListNode {
         int val;
         ListNode next;
