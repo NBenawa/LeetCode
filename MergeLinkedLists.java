@@ -13,12 +13,21 @@ public class MergeLinkedLists {
     }
 
     private static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
         if (l1 == null) {
             return l2;
         }
         if (l2 == null) {
             return l1;
         }
+        if (l1.val < l2.val) {
+            dummy.next = l1;
+            dummy.next.next = mergeTwoLists(l1.next, l2);
+        } else {
+            dummy.next = l2;
+            dummy.next.next = mergeTwoLists(l1, l2.next);
+        }
+        return dummy.next;
     }
 
     private static void printList(ListNode head) {
