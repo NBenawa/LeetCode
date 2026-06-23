@@ -1,17 +1,23 @@
 public class IsTreeUnivalued {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(15);
-        root.left.left = new TreeNode(43);
-        root.right.left = new TreeNode(7);
-        root.right.right = new TreeNode(0);
-        root.right.left.left = new TreeNode(18);
-        System.out.println(isTreeUnivalued(root));
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(10);
+        root.left.left = new TreeNode(10);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(10);
+        root.right.left.left = new TreeNode(10);
+        System.out.println(isTreeUnivalued(root, root.val));
     }
 
-    private static boolean isTreeUnivalued(TreeNode root) {
-        return true;
+    private static boolean isTreeUnivalued(TreeNode root, int rootValue) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val != rootValue) {
+            return false;
+        }
+        return isTreeUnivalued(root.left, rootValue) && isTreeUnivalued(root.right, rootValue);
     }
 }
 class TreeNode {
