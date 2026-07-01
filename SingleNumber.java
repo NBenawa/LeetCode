@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SingleNumber {
@@ -8,14 +9,10 @@ public class SingleNumber {
     }
 
     private static int singleNumber(int[] nums) {
-        List<Integer> occurings = new ArrayList<>();
-        for (int i : nums) {
-            if (occurings.contains(i)) {
-                occurings.remove(Integer.valueOf(i));
-            } else {
-                occurings.add(i);
-            }
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
         }
-        return occurings.get(0);
+        return result;
     }
 }
