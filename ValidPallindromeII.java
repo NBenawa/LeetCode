@@ -8,29 +8,24 @@ public class ValidPallindromeII {
     private static boolean validPalindrome(String s) {
         int left = 0;
         int right = s.length() - 1;
-        boolean skipped = false;
-        boolean skipChecked = false;
 
         while (left < right) {
-                if (skipped && skipChecked && (s.charAt(left) != s.charAt(right))) {
-                    return false;
-                }
-                if (skipped && s.charAt(left) != s.charAt(right)) {
-                    left--;
-                    right--;
-                    skipChecked = true;
-                    continue;
-                }
-                if (s.charAt(left) != s.charAt(right)) {
-                    left++;
-                    skipped = true;
-                    continue;
-                }
-                left++;
-                right--;
-                if (skipped) {
-                    skipChecked = true;
-                }
+            if (s.charAt(left) != s.charAt(right)) {
+                return isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1);
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    private static boolean isPalindrome(String s, int left, int right) {
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
         return true;
     }
