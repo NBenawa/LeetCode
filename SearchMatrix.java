@@ -21,18 +21,15 @@ public class SearchMatrix {
         int right = rows * cols - 1;
 
         while (left <= right) {
-            int mid = (left + right + 1) / 2;
+            int mid = left + (right - left) / 2;
             int midValue = matrix[mid / cols][mid % cols];
 
-        for (int[] row : matrix) {
-            for (int num : row) {
-                if (num > target) {
-                    break; // No need to check further in this row
-                }
-                rows
-                if (num == target) {
-                    return true;
-                }
+            if (midValue == target) {
+                return true;
+            } else if (midValue < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
         return false;
