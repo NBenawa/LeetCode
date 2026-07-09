@@ -17,12 +17,13 @@ public class ReverseLinkedList {
 
     private static ListNode reverseList(ListNode head) {
         ListNode previous = null;
+        ListNode current = head;
         
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = previous;
-            previous = head;
-            head = next;
+        while (current != null) {
+            ListNode next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
         }
         return previous;
     }
