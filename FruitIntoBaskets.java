@@ -1,29 +1,37 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class FruitIntoBaskets {
     public static void main(String[] args) {
-        int[] fruits = {3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4};
+        int[] fruits = {0,1,6,6,4,4,6};
         System.out.println(totalFruit(fruits));
     }
 
     private static int totalFruit(int[] fruits) {
         int maxFruits = 0;
-        int left = 0;
-        Map<Integer, Integer> fruitCount = new HashMap<>();
+        int current = 0;
+        int first = -1;
+        int second = -1;
+        int secondCount = 0;
 
-        for (int right = 0; right < fruits.length; right++) {
-            fruitCount.put(fruits[right], fruitCount.getOrDefault(fruits[right], 0) + 1);
-
-            while (fruitCount.size() > 2) {
-                fruitCount.put(fruits[left], fruitCount.get(fruits[left]) - 1);
-                if (fruitCount.get(fruits[left]) == 0) {
-                    fruitCount.remove(fruits[left]);
+        for (int fruit : fruits) {
+            if (fruit == first || fruit == second) {
+                if (fruit == second) {
+                    secondCount++;
                 }
-                left++;
+                current++;
+            } else if (second != -1) {
+                current = secondCount+1; // Reset current count for the new fruit
+                first = second; // Shift the second fruit to first
+                second = fruit; // Set the new fruit as second
+                secondCount = 1;
             }
-
-            maxFruits = Math.max(maxFruits, right - left + 1);
+            if (first == -1) {
+                first = fruit;
+                current++;
+            } else if (second == -1 && fruit != first) {
+                second = fruit;
+                current++;
+                secondCount++;
+            }
+            maxFruits = Math.max(maxFruits, current);
         }
 
         return maxFruits;
