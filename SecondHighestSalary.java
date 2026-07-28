@@ -1,11 +1,11 @@
 public class SecondHighestSalary {
     public static void main(String[] args) {
         int[] salaries = {100, 200, 300, 400, 500};
-        int secondHighest = findSecondHighestSalary(salaries);
+        int secondHighest = findSalary(salaries);
         System.out.println("The second highest salary is: " + secondHighest);
     }
 
-    public static int findSecondHighestSalary(int[] salaries) {
+    public static int findSalary(int[] salaries) {
         Integer highest = null;
         Integer secondHighest = null;
 
